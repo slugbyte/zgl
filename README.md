@@ -18,7 +18,7 @@ defer vertex_buffer.delete();
 
 Add zgl to your `build.zig.zon` with the following command:
 
-`zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/a58ab3f0e40406a99f3ce5f1cfc353d0c196e4d6.tar.gz`
+`zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/787c91441aeef9048d5f20236365bcd64f6ca72b.tar.gz`
 
 Replace [commit_hash] with the latest commit or tagged release.
 
