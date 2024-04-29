@@ -32,7 +32,65 @@ const zgl = b.dependency("zgl", .{
 exe.root_module.addImport("zgl", zgl.module("zgl"));
 ```
 
+
 Then import it with `const gl = @import("zgl");`, and build as normal with `zig build`.
+
+##  usage with mach-glfw
+```zig
+const std = @import("std");
+const gl = @import("zgl");
+const glfw = @import("mach-glfw");
+
+fn errorCallback(error_code: glfw.ErrorCode, description: [:0]const u8) void {
+    std.log.err("glfw error code ({}): {s}\n", .{ error_code, description });
+}
+
+fn getProcAddress(p: glfw.GLProc, symbolName: [:0]const u8) ?gl.binding.FunctionPointer {
+    _ = p;
+    return glfw.getProcAddress(symbolName);
+}
+
+pub fn main() !void {
+    glfw.setErrorCallback(errorCallback);
+
+    if (!glfw.init(.{})) {
+        std.log.err("failed to init glfw: {?s}", .{glfw.getErrorString()});
+        std.process.exit(1);
+    }
+    defer glfw.terminate();
+
+    const window_hints: glfw.Window.Hints = .{
+        .context_version_major = 4,
+        .context_version_minor = 1,
+        .opengl_profile = .opengl_core_profile,
+        .opengl_forward_compat = true,
+        .context_debug = true,
+    };
+    const window = glfw.Window.create(640, 480, "OpenGL Window", null, null, window_hints) orelse {
+        std.log.err("failed to create glfw window: {?s}", .{glfw.getErrorString()});
+        std.process.exit(1);
+    };
+    defer window.destroy();
+
+    glfw.makeContextCurrent(window);
+    defer glfw.makeContextCurrent(null);
+
+    const proc: glfw.GLProc = undefined;
+    gl.loadExtensions(proc, getProcAddress) catch |err| {
+        std.log.err("failed to load gl extenstion: {any}", .{err});
+        std.process.exit(1);
+    };
+
+    while (!window.shouldClose()) {
+        window.swapBuffers();
+
+        gl.clearColor(1.0, 1.0, 1.0, 1.0);
+        gl.clear(.{ .color = true });
+
+        glfw.pollEvents();
+    }
+}
+```
 
 ## Development Philosophy
 
