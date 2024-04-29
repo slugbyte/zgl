@@ -1,26 +1,13 @@
-# ZGL – Zig OpenGL Bindings
+# ZGL 4.1 Fork – Zig OpenGL Bindings
 
-This library provides a thin, type-safe binding for OpenGL.
+> This library provides a thin, type-safe binding for OpenGL.
 
-## Example
-
-```zig
-// Use classic OpenGL flavour
-var vao = gl.createVertexArray();
-defer gl.deleteVertexArray(vao);
-
-// Use object oriented flavour
-var vertex_buffer = gl.Buffer.create();
-defer vertex_buffer.delete();
-```
+[Upstream Repo](https://github.com/ziglibs/zgl)
 
 ## Installation
-
 Add zgl to your `build.zig.zon` with the following command:
 
 `zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/787c91441aeef9048d5f20236365bcd64f6ca72b.tar.gz`
-
-Replace [commit_hash] with the latest commit or tagged release.
 
 Then add the following to your `build.zig`:
 
@@ -32,10 +19,9 @@ const zgl = b.dependency("zgl", .{
 exe.root_module.addImport("zgl", zgl.module("zgl"));
 ```
 
-
 Then import it with `const gl = @import("zgl");`, and build as normal with `zig build`.
 
-##  usage with mach-glfw
+## Example with mach-glfw
 ```zig
 const std = @import("std");
 const gl = @import("zgl");
@@ -45,8 +31,7 @@ fn errorCallback(error_code: glfw.ErrorCode, description: [:0]const u8) void {
     std.log.err("glfw error code ({}): {s}\n", .{ error_code, description });
 }
 
-fn getProcAddress(p: glfw.GLProc, symbolName: [:0]const u8) ?gl.binding.FunctionPointer {
-    _ = p;
+fn getProcAddress(_: type, symbolName: [:0]const u8) ?gl.binding.FunctionPointer {
     return glfw.getProcAddress(symbolName);
 }
 
@@ -75,8 +60,7 @@ pub fn main() !void {
     glfw.makeContextCurrent(window);
     defer glfw.makeContextCurrent(null);
 
-    const proc: glfw.GLProc = undefined;
-    gl.loadExtensions(proc, getProcAddress) catch |err| {
+    gl.loadExtensions(void, getProcAddress) catch |err| {
         std.log.err("failed to load gl extenstion: {any}", .{err});
         std.process.exit(1);
     };
