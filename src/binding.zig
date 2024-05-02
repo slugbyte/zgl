@@ -5,14 +5,14 @@
 
 //
 // Generation parameters:
-// API:        GL_VERSION_1_0
+// API:        GL_VERSION_1_1
 // Profile:    core
 // Extensions: 
 //
 
 //
 // This file was generated with the following command line:
-// generator /Users/slugbyte/workspace/lang/zig-opengl/bin/Debug/net7.0/generator.dll OpenGL-Registry/xml/gl.xml ./binding/gl_binding_1_0.zig GL_VERSION_1_0
+// generator /Users/slugbyte/workspace/lang/zig-opengl/bin/Debug/net7.0/generator.dll OpenGL-Registry/xml/gl.xml ./binding/gl_binding_1_1.zig GL_VERSION_1_1
 //
 
 const std = @import("std");
@@ -495,6 +495,110 @@ pub const LIGHT4 = 0x4004;
 pub const LIGHT5 = 0x4005;
 pub const LIGHT6 = 0x4006;
 pub const LIGHT7 = 0x4007;
+pub const COLOR_LOGIC_OP = 0x0BF2;
+pub const POLYGON_OFFSET_UNITS = 0x2A00;
+pub const POLYGON_OFFSET_POINT = 0x2A01;
+pub const POLYGON_OFFSET_LINE = 0x2A02;
+pub const POLYGON_OFFSET_FILL = 0x8037;
+pub const POLYGON_OFFSET_FACTOR = 0x8038;
+pub const TEXTURE_BINDING_1D = 0x8068;
+pub const TEXTURE_BINDING_2D = 0x8069;
+pub const TEXTURE_INTERNAL_FORMAT = 0x1003;
+pub const TEXTURE_RED_SIZE = 0x805C;
+pub const TEXTURE_GREEN_SIZE = 0x805D;
+pub const TEXTURE_BLUE_SIZE = 0x805E;
+pub const TEXTURE_ALPHA_SIZE = 0x805F;
+pub const DOUBLE = 0x140A;
+pub const PROXY_TEXTURE_1D = 0x8063;
+pub const PROXY_TEXTURE_2D = 0x8064;
+pub const R3_G3_B2 = 0x2A10;
+pub const RGB4 = 0x804F;
+pub const RGB5 = 0x8050;
+pub const RGB8 = 0x8051;
+pub const RGB10 = 0x8052;
+pub const RGB12 = 0x8053;
+pub const RGB16 = 0x8054;
+pub const RGBA2 = 0x8055;
+pub const RGBA4 = 0x8056;
+pub const RGB5_A1 = 0x8057;
+pub const RGBA8 = 0x8058;
+pub const RGB10_A2 = 0x8059;
+pub const RGBA12 = 0x805A;
+pub const RGBA16 = 0x805B;
+pub const CLIENT_PIXEL_STORE_BIT = 0x00000001;
+pub const CLIENT_VERTEX_ARRAY_BIT = 0x00000002;
+pub const CLIENT_ALL_ATTRIB_BITS = 0xFFFFFFFF;
+pub const VERTEX_ARRAY_POINTER = 0x808E;
+pub const NORMAL_ARRAY_POINTER = 0x808F;
+pub const COLOR_ARRAY_POINTER = 0x8090;
+pub const INDEX_ARRAY_POINTER = 0x8091;
+pub const TEXTURE_COORD_ARRAY_POINTER = 0x8092;
+pub const EDGE_FLAG_ARRAY_POINTER = 0x8093;
+pub const FEEDBACK_BUFFER_POINTER = 0x0DF0;
+pub const SELECTION_BUFFER_POINTER = 0x0DF3;
+pub const CLIENT_ATTRIB_STACK_DEPTH = 0x0BB1;
+pub const INDEX_LOGIC_OP = 0x0BF1;
+pub const MAX_CLIENT_ATTRIB_STACK_DEPTH = 0x0D3B;
+pub const FEEDBACK_BUFFER_SIZE = 0x0DF1;
+pub const FEEDBACK_BUFFER_TYPE = 0x0DF2;
+pub const SELECTION_BUFFER_SIZE = 0x0DF4;
+pub const VERTEX_ARRAY = 0x8074;
+pub const NORMAL_ARRAY = 0x8075;
+pub const COLOR_ARRAY = 0x8076;
+pub const INDEX_ARRAY = 0x8077;
+pub const TEXTURE_COORD_ARRAY = 0x8078;
+pub const EDGE_FLAG_ARRAY = 0x8079;
+pub const VERTEX_ARRAY_SIZE = 0x807A;
+pub const VERTEX_ARRAY_TYPE = 0x807B;
+pub const VERTEX_ARRAY_STRIDE = 0x807C;
+pub const NORMAL_ARRAY_TYPE = 0x807E;
+pub const NORMAL_ARRAY_STRIDE = 0x807F;
+pub const COLOR_ARRAY_SIZE = 0x8081;
+pub const COLOR_ARRAY_TYPE = 0x8082;
+pub const COLOR_ARRAY_STRIDE = 0x8083;
+pub const INDEX_ARRAY_TYPE = 0x8085;
+pub const INDEX_ARRAY_STRIDE = 0x8086;
+pub const TEXTURE_COORD_ARRAY_SIZE = 0x8088;
+pub const TEXTURE_COORD_ARRAY_TYPE = 0x8089;
+pub const TEXTURE_COORD_ARRAY_STRIDE = 0x808A;
+pub const EDGE_FLAG_ARRAY_STRIDE = 0x808C;
+pub const TEXTURE_LUMINANCE_SIZE = 0x8060;
+pub const TEXTURE_INTENSITY_SIZE = 0x8061;
+pub const TEXTURE_PRIORITY = 0x8066;
+pub const TEXTURE_RESIDENT = 0x8067;
+pub const ALPHA4 = 0x803B;
+pub const ALPHA8 = 0x803C;
+pub const ALPHA12 = 0x803D;
+pub const ALPHA16 = 0x803E;
+pub const LUMINANCE4 = 0x803F;
+pub const LUMINANCE8 = 0x8040;
+pub const LUMINANCE12 = 0x8041;
+pub const LUMINANCE16 = 0x8042;
+pub const LUMINANCE4_ALPHA4 = 0x8043;
+pub const LUMINANCE6_ALPHA2 = 0x8044;
+pub const LUMINANCE8_ALPHA8 = 0x8045;
+pub const LUMINANCE12_ALPHA4 = 0x8046;
+pub const LUMINANCE12_ALPHA12 = 0x8047;
+pub const LUMINANCE16_ALPHA16 = 0x8048;
+pub const INTENSITY = 0x8049;
+pub const INTENSITY4 = 0x804A;
+pub const INTENSITY8 = 0x804B;
+pub const INTENSITY12 = 0x804C;
+pub const INTENSITY16 = 0x804D;
+pub const V2F = 0x2A20;
+pub const V3F = 0x2A21;
+pub const C4UB_V2F = 0x2A22;
+pub const C4UB_V3F = 0x2A23;
+pub const C3F_V3F = 0x2A24;
+pub const N3F_V3F = 0x2A25;
+pub const C4F_N3F_V3F = 0x2A26;
+pub const T2F_V3F = 0x2A27;
+pub const T4F_V4F = 0x2A28;
+pub const T2F_C4UB_V3F = 0x2A29;
+pub const T2F_C3F_V3F = 0x2A2A;
+pub const T2F_N3F_V3F = 0x2A2B;
+pub const T2F_C4F_N3F_V3F = 0x2A2C;
+pub const T4F_C4F_N3F_V4F = 0x2A2D;
 
 
 pub fn cullFace(_mode: GLenum) callconv(.C) void {
@@ -1719,6 +1823,126 @@ pub fn translated(_x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void {
 
 pub fn translatef(_x: GLfloat, _y: GLfloat, _z: GLfloat) callconv(.C) void {
     return @call(.always_tail, function_pointers.glTranslatef, .{_x, _y, _z});
+}
+
+pub fn drawArrays(_mode: GLenum, _first: GLint, _count: GLsizei) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glDrawArrays, .{_mode, _first, _count});
+}
+
+pub fn drawElements(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glDrawElements, .{_mode, _count, _type, _indices});
+}
+
+pub fn getPointerv(_pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glGetPointerv, .{_pname, _params});
+}
+
+pub fn polygonOffset(_factor: GLfloat, _units: GLfloat) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glPolygonOffset, .{_factor, _units});
+}
+
+pub fn copyTexImage1D(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _border: GLint) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glCopyTexImage1D, .{_target, _level, _internalformat, _x, _y, _width, _border});
+}
+
+pub fn copyTexImage2D(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _border: GLint) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glCopyTexImage2D, .{_target, _level, _internalformat, _x, _y, _width, _height, _border});
+}
+
+pub fn copyTexSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glCopyTexSubImage1D, .{_target, _level, _xoffset, _x, _y, _width});
+}
+
+pub fn copyTexSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glCopyTexSubImage2D, .{_target, _level, _xoffset, _yoffset, _x, _y, _width, _height});
+}
+
+pub fn texSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glTexSubImage1D, .{_target, _level, _xoffset, _width, _format, _type, _pixels});
+}
+
+pub fn texSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glTexSubImage2D, .{_target, _level, _xoffset, _yoffset, _width, _height, _format, _type, _pixels});
+}
+
+pub fn bindTexture(_target: GLenum, _texture: GLuint) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glBindTexture, .{_target, _texture});
+}
+
+pub fn deleteTextures(_n: GLsizei, _textures: [*c]const GLuint) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glDeleteTextures, .{_n, _textures});
+}
+
+pub fn genTextures(_n: GLsizei, _textures: [*c]GLuint) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glGenTextures, .{_n, _textures});
+}
+
+pub fn isTexture(_texture: GLuint) callconv(.C) GLboolean {
+    return @call(.always_tail, function_pointers.glIsTexture, .{_texture});
+}
+
+pub fn arrayElement(_i: GLint) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glArrayElement, .{_i});
+}
+
+pub fn colorPointer(_size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glColorPointer, .{_size, _type, _stride, _pointer});
+}
+
+pub fn disableClientState(_array: GLenum) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glDisableClientState, .{_array});
+}
+
+pub fn edgeFlagPointer(_stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glEdgeFlagPointer, .{_stride, _pointer});
+}
+
+pub fn enableClientState(_array: GLenum) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glEnableClientState, .{_array});
+}
+
+pub fn indexPointer(_type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glIndexPointer, .{_type, _stride, _pointer});
+}
+
+pub fn interleavedArrays(_format: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glInterleavedArrays, .{_format, _stride, _pointer});
+}
+
+pub fn normalPointer(_type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glNormalPointer, .{_type, _stride, _pointer});
+}
+
+pub fn texCoordPointer(_size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glTexCoordPointer, .{_size, _type, _stride, _pointer});
+}
+
+pub fn vertexPointer(_size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glVertexPointer, .{_size, _type, _stride, _pointer});
+}
+
+pub fn areTexturesResident(_n: GLsizei, _textures: [*c]const GLuint, _residences: [*c]GLboolean) callconv(.C) GLboolean {
+    return @call(.always_tail, function_pointers.glAreTexturesResident, .{_n, _textures, _residences});
+}
+
+pub fn prioritizeTextures(_n: GLsizei, _textures: [*c]const GLuint, _priorities: [*c]const GLfloat) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glPrioritizeTextures, .{_n, _textures, _priorities});
+}
+
+pub fn indexub(_c: GLubyte) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glIndexub, .{_c});
+}
+
+pub fn indexubv(_c: ?[*:0]const GLubyte) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glIndexubv, .{_c});
+}
+
+pub fn popClientAttrib() callconv(.C) void {
+    return @call(.always_tail, function_pointers.glPopClientAttrib, .{});
+}
+
+pub fn pushClientAttrib(_mask: GLbitfield) callconv(.C) void {
+    return @call(.always_tail, function_pointers.glPushClientAttrib, .{_mask});
 }
 // Extensions:
 
@@ -3561,6 +3785,186 @@ pub fn load(load_ctx: anytype, get_proc_address: fn(@TypeOf(load_ctx), [:0]const
         log.err("entry point glTranslatef not found!", .{});
         success = false;
     }
+    if(get_proc_address(load_ctx, "glDrawArrays")) |proc| {
+        function_pointers.glDrawArrays = @ptrCast(proc);
+    } else {
+        log.err("entry point glDrawArrays not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glDrawElements")) |proc| {
+        function_pointers.glDrawElements = @ptrCast(proc);
+    } else {
+        log.err("entry point glDrawElements not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glGetPointerv")) |proc| {
+        function_pointers.glGetPointerv = @ptrCast(proc);
+    } else {
+        log.err("entry point glGetPointerv not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glPolygonOffset")) |proc| {
+        function_pointers.glPolygonOffset = @ptrCast(proc);
+    } else {
+        log.err("entry point glPolygonOffset not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glCopyTexImage1D")) |proc| {
+        function_pointers.glCopyTexImage1D = @ptrCast(proc);
+    } else {
+        log.err("entry point glCopyTexImage1D not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glCopyTexImage2D")) |proc| {
+        function_pointers.glCopyTexImage2D = @ptrCast(proc);
+    } else {
+        log.err("entry point glCopyTexImage2D not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glCopyTexSubImage1D")) |proc| {
+        function_pointers.glCopyTexSubImage1D = @ptrCast(proc);
+    } else {
+        log.err("entry point glCopyTexSubImage1D not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glCopyTexSubImage2D")) |proc| {
+        function_pointers.glCopyTexSubImage2D = @ptrCast(proc);
+    } else {
+        log.err("entry point glCopyTexSubImage2D not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glTexSubImage1D")) |proc| {
+        function_pointers.glTexSubImage1D = @ptrCast(proc);
+    } else {
+        log.err("entry point glTexSubImage1D not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glTexSubImage2D")) |proc| {
+        function_pointers.glTexSubImage2D = @ptrCast(proc);
+    } else {
+        log.err("entry point glTexSubImage2D not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glBindTexture")) |proc| {
+        function_pointers.glBindTexture = @ptrCast(proc);
+    } else {
+        log.err("entry point glBindTexture not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glDeleteTextures")) |proc| {
+        function_pointers.glDeleteTextures = @ptrCast(proc);
+    } else {
+        log.err("entry point glDeleteTextures not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glGenTextures")) |proc| {
+        function_pointers.glGenTextures = @ptrCast(proc);
+    } else {
+        log.err("entry point glGenTextures not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glIsTexture")) |proc| {
+        function_pointers.glIsTexture = @ptrCast(proc);
+    } else {
+        log.err("entry point glIsTexture not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glArrayElement")) |proc| {
+        function_pointers.glArrayElement = @ptrCast(proc);
+    } else {
+        log.err("entry point glArrayElement not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glColorPointer")) |proc| {
+        function_pointers.glColorPointer = @ptrCast(proc);
+    } else {
+        log.err("entry point glColorPointer not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glDisableClientState")) |proc| {
+        function_pointers.glDisableClientState = @ptrCast(proc);
+    } else {
+        log.err("entry point glDisableClientState not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glEdgeFlagPointer")) |proc| {
+        function_pointers.glEdgeFlagPointer = @ptrCast(proc);
+    } else {
+        log.err("entry point glEdgeFlagPointer not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glEnableClientState")) |proc| {
+        function_pointers.glEnableClientState = @ptrCast(proc);
+    } else {
+        log.err("entry point glEnableClientState not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glIndexPointer")) |proc| {
+        function_pointers.glIndexPointer = @ptrCast(proc);
+    } else {
+        log.err("entry point glIndexPointer not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glInterleavedArrays")) |proc| {
+        function_pointers.glInterleavedArrays = @ptrCast(proc);
+    } else {
+        log.err("entry point glInterleavedArrays not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glNormalPointer")) |proc| {
+        function_pointers.glNormalPointer = @ptrCast(proc);
+    } else {
+        log.err("entry point glNormalPointer not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glTexCoordPointer")) |proc| {
+        function_pointers.glTexCoordPointer = @ptrCast(proc);
+    } else {
+        log.err("entry point glTexCoordPointer not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glVertexPointer")) |proc| {
+        function_pointers.glVertexPointer = @ptrCast(proc);
+    } else {
+        log.err("entry point glVertexPointer not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glAreTexturesResident")) |proc| {
+        function_pointers.glAreTexturesResident = @ptrCast(proc);
+    } else {
+        log.err("entry point glAreTexturesResident not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glPrioritizeTextures")) |proc| {
+        function_pointers.glPrioritizeTextures = @ptrCast(proc);
+    } else {
+        log.err("entry point glPrioritizeTextures not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glIndexub")) |proc| {
+        function_pointers.glIndexub = @ptrCast(proc);
+    } else {
+        log.err("entry point glIndexub not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glIndexubv")) |proc| {
+        function_pointers.glIndexubv = @ptrCast(proc);
+    } else {
+        log.err("entry point glIndexubv not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glPopClientAttrib")) |proc| {
+        function_pointers.glPopClientAttrib = @ptrCast(proc);
+    } else {
+        log.err("entry point glPopClientAttrib not found!", .{});
+        success = false;
+    }
+    if(get_proc_address(load_ctx, "glPushClientAttrib")) |proc| {
+        function_pointers.glPushClientAttrib = @ptrCast(proc);
+    } else {
+        log.err("entry point glPushClientAttrib not found!", .{});
+        success = false;
+    }
     if(!success)
         return error.EntryPointNotFound;
 }
@@ -3872,6 +4276,36 @@ const function_signatures = struct {
     const glScalef = fn(_x: GLfloat, _y: GLfloat, _z: GLfloat) callconv(.C) void;
     const glTranslated = fn(_x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void;
     const glTranslatef = fn(_x: GLfloat, _y: GLfloat, _z: GLfloat) callconv(.C) void;
+    const glDrawArrays = fn(_mode: GLenum, _first: GLint, _count: GLsizei) callconv(.C) void;
+    const glDrawElements = fn(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.C) void;
+    const glGetPointerv = fn(_pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void;
+    const glPolygonOffset = fn(_factor: GLfloat, _units: GLfloat) callconv(.C) void;
+    const glCopyTexImage1D = fn(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _border: GLint) callconv(.C) void;
+    const glCopyTexImage2D = fn(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _border: GLint) callconv(.C) void;
+    const glCopyTexSubImage1D = fn(_target: GLenum, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.C) void;
+    const glCopyTexSubImage2D = fn(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
+    const glTexSubImage1D = fn(_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
+    const glTexSubImage2D = fn(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
+    const glBindTexture = fn(_target: GLenum, _texture: GLuint) callconv(.C) void;
+    const glDeleteTextures = fn(_n: GLsizei, _textures: [*c]const GLuint) callconv(.C) void;
+    const glGenTextures = fn(_n: GLsizei, _textures: [*c]GLuint) callconv(.C) void;
+    const glIsTexture = fn(_texture: GLuint) callconv(.C) GLboolean;
+    const glArrayElement = fn(_i: GLint) callconv(.C) void;
+    const glColorPointer = fn(_size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
+    const glDisableClientState = fn(_array: GLenum) callconv(.C) void;
+    const glEdgeFlagPointer = fn(_stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
+    const glEnableClientState = fn(_array: GLenum) callconv(.C) void;
+    const glIndexPointer = fn(_type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
+    const glInterleavedArrays = fn(_format: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
+    const glNormalPointer = fn(_type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
+    const glTexCoordPointer = fn(_size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
+    const glVertexPointer = fn(_size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
+    const glAreTexturesResident = fn(_n: GLsizei, _textures: [*c]const GLuint, _residences: [*c]GLboolean) callconv(.C) GLboolean;
+    const glPrioritizeTextures = fn(_n: GLsizei, _textures: [*c]const GLuint, _priorities: [*c]const GLfloat) callconv(.C) void;
+    const glIndexub = fn(_c: GLubyte) callconv(.C) void;
+    const glIndexubv = fn(_c: ?[*:0]const GLubyte) callconv(.C) void;
+    const glPopClientAttrib = fn() callconv(.C) void;
+    const glPushClientAttrib = fn(_mask: GLbitfield) callconv(.C) void;
 };
 
 const function_pointers = struct {
@@ -4181,6 +4615,36 @@ const function_pointers = struct {
     var glScalef: *const function_signatures.glScalef = undefined;
     var glTranslated: *const function_signatures.glTranslated = undefined;
     var glTranslatef: *const function_signatures.glTranslatef = undefined;
+    var glDrawArrays: *const function_signatures.glDrawArrays = undefined;
+    var glDrawElements: *const function_signatures.glDrawElements = undefined;
+    var glGetPointerv: *const function_signatures.glGetPointerv = undefined;
+    var glPolygonOffset: *const function_signatures.glPolygonOffset = undefined;
+    var glCopyTexImage1D: *const function_signatures.glCopyTexImage1D = undefined;
+    var glCopyTexImage2D: *const function_signatures.glCopyTexImage2D = undefined;
+    var glCopyTexSubImage1D: *const function_signatures.glCopyTexSubImage1D = undefined;
+    var glCopyTexSubImage2D: *const function_signatures.glCopyTexSubImage2D = undefined;
+    var glTexSubImage1D: *const function_signatures.glTexSubImage1D = undefined;
+    var glTexSubImage2D: *const function_signatures.glTexSubImage2D = undefined;
+    var glBindTexture: *const function_signatures.glBindTexture = undefined;
+    var glDeleteTextures: *const function_signatures.glDeleteTextures = undefined;
+    var glGenTextures: *const function_signatures.glGenTextures = undefined;
+    var glIsTexture: *const function_signatures.glIsTexture = undefined;
+    var glArrayElement: *const function_signatures.glArrayElement = undefined;
+    var glColorPointer: *const function_signatures.glColorPointer = undefined;
+    var glDisableClientState: *const function_signatures.glDisableClientState = undefined;
+    var glEdgeFlagPointer: *const function_signatures.glEdgeFlagPointer = undefined;
+    var glEnableClientState: *const function_signatures.glEnableClientState = undefined;
+    var glIndexPointer: *const function_signatures.glIndexPointer = undefined;
+    var glInterleavedArrays: *const function_signatures.glInterleavedArrays = undefined;
+    var glNormalPointer: *const function_signatures.glNormalPointer = undefined;
+    var glTexCoordPointer: *const function_signatures.glTexCoordPointer = undefined;
+    var glVertexPointer: *const function_signatures.glVertexPointer = undefined;
+    var glAreTexturesResident: *const function_signatures.glAreTexturesResident = undefined;
+    var glPrioritizeTextures: *const function_signatures.glPrioritizeTextures = undefined;
+    var glIndexub: *const function_signatures.glIndexub = undefined;
+    var glIndexubv: *const function_signatures.glIndexubv = undefined;
+    var glPopClientAttrib: *const function_signatures.glPopClientAttrib = undefined;
+    var glPushClientAttrib: *const function_signatures.glPushClientAttrib = undefined;
 };
 
 test {
