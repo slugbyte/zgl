@@ -44,7 +44,7 @@ fn checkError() void {
             binding.INVALID_VALUE => "invalid value",
             binding.INVALID_OPERATION => "invalid operation",
             binding.OUT_OF_MEMORY => "out of memory",
-            binding.INVALID_FRAMEBUFFER_OPERATION => "invalid framebuffer operation",
+            // binding.INVALID_FRAMEBUFFER_OPERATION => "invalid framebuffer operation",
             // binding.STACK_OVERFLOW => "stack overflow",
             // binding.STACK_UNDERFLOW => "stack underflow",
             // binding.INVALID_FRAMEBUFFER_OPERATION_EXT => Error.InvalidFramebufferOperation,
