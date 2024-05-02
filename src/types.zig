@@ -1,4 +1,4 @@
-const binding = @import("binding.zig");
+const binding = @import("./binding/gl_binding_3_3.zig");
 const gl = @import("zgl");
 
 pub const Boolean = binding.GLboolean;
