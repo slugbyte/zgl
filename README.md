@@ -5,10 +5,9 @@
 [Upstream Repo](https://github.com/ziglibs/zgl)
 
 ## Installation
-Add zgl to your `build.zig.zon` with the following command:
+Add zgl to your `build.zig.zon` with one of the following commands (depending on the version you want):
 
 `zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/zgl_1_0.tar.gz`
-`zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/zgl_1_1.tar.gz`
 `zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/zgl_3_3.tar.gz`
 `zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/zgl_4_1.tar.gz`
 
