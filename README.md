@@ -7,7 +7,7 @@
 ## Installation
 Add zgl to your `build.zig.zon` with the following command:
 
-`zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/[hash].tar.gz`
+`zig fetch --save https://github.com/slugbyte/zgl-4.1/archive/zgl_1_0.tar.gz`
 
 Then add the following to your `build.zig`:
 
