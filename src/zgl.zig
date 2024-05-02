@@ -1,6 +1,6 @@
 const std = @import("std");
 const root = @import("root");
-const binding = @import("./binding.zig");
+pub const binding = @import("./binding.zig");
 
 comptime {
     std.testing.refAllDecls(@This());
