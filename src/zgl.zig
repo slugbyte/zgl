@@ -112,111 +112,6 @@ fn DebugMessageCallbackHandler(comptime Context: type) type {
         fn (context: Context, source: DebugSource, msg_type: DebugMessageType, id: usize, severity: DebugSeverity, message: []const u8) void;
 }
 
-/// Sets the OpenGL debug callback handler in zig style.
-/// `context` may be a pointer or `{}`.
-pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCallbackHandler(@TypeOf(context))) void {
-    const is_void = (@TypeOf(context) == void);
-    const Context = @TypeOf(context);
-
-    const H = struct {
-        fn translateSource(source: types.UInt) DebugSource {
-            return switch (source) {
-                binding.DEBUG_SOURCE_API => DebugSource.api,
-                // binding.DEBUG_SOURCE_API_ARB => DebugSource.api,
-                // binding.DEBUG_SOURCE_API_KHR => DebugSource.api,
-                binding.DEBUG_SOURCE_WINDOW_SYSTEM => DebugSource.window_system,
-                // binding.DEBUG_SOURCE_WINDOW_SYSTEM_ARB => DebugSource.window_system,
-                // binding.DEBUG_SOURCE_WINDOW_SYSTEM_KHR => DebugSource.window_system,
-                binding.DEBUG_SOURCE_SHADER_COMPILER => DebugSource.shader_compiler,
-                // binding.DEBUG_SOURCE_SHADER_COMPILER_ARB => DebugSource.shader_compiler,
-                // binding.DEBUG_SOURCE_SHADER_COMPILER_KHR => DebugSource.shader_compiler,
-                binding.DEBUG_SOURCE_THIRD_PARTY => DebugSource.third_party,
-                // binding.DEBUG_SOURCE_THIRD_PARTY_ARB => DebugSource.third_party,
-                // binding.DEBUG_SOURCE_THIRD_PARTY_KHR => DebugSource.third_party,
-                binding.DEBUG_SOURCE_APPLICATION => DebugSource.application,
-                // binding.DEBUG_SOURCE_APPLICATION_ARB => DebugSource.application,
-                // binding.DEBUG_SOURCE_APPLICATION_KHR => DebugSource.application,
-                binding.DEBUG_SOURCE_OTHER => DebugSource.other,
-                // binding.DEBUG_SOURCE_OTHER_ARB => DebugSource.other,
-                // binding.DEBUG_SOURCE_OTHER_KHR => DebugSource.other,
-                else => DebugSource.other,
-            };
-        }
-
-        fn translateMessageType(msg_type: types.UInt) DebugMessageType {
-            return switch (msg_type) {
-                binding.DEBUG_TYPE_ERROR => DebugMessageType.@"error",
-                // binding.DEBUG_TYPE_ERROR_ARB => DebugMessageType.@"error",
-                // binding.DEBUG_TYPE_ERROR_KHR => DebugMessageType.@"error",
-                binding.DEBUG_TYPE_DEPRECATED_BEHAVIOR => DebugMessageType.deprecated_behavior,
-                // binding.DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB => DebugMessageType.deprecated_behavior,
-                // binding.DEBUG_TYPE_DEPRECATED_BEHAVIOR_KHR => DebugMessageType.deprecated_behavior,
-                binding.DEBUG_TYPE_UNDEFINED_BEHAVIOR => DebugMessageType.undefined_behavior,
-                // binding.DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB => DebugMessageType.undefined_behavior,
-                // binding.DEBUG_TYPE_UNDEFINED_BEHAVIOR_KHR => DebugMessageType.undefined_behavior,
-                binding.DEBUG_TYPE_PORTABILITY => DebugMessageType.portability,
-                // binding.DEBUG_TYPE_PORTABILITY_ARB => DebugMessageType.portability,
-                // binding.DEBUG_TYPE_PORTABILITY_KHR => DebugMessageType.portability,
-                binding.DEBUG_TYPE_PERFORMANCE => DebugMessageType.performance,
-                // binding.DEBUG_TYPE_PERFORMANCE_ARB => DebugMessageType.performance,
-                // binding.DEBUG_TYPE_PERFORMANCE_KHR => DebugMessageType.performance,
-                binding.DEBUG_TYPE_OTHER => DebugMessageType.other,
-                // binding.DEBUG_TYPE_OTHER_ARB => DebugMessageType.other,
-                // binding.DEBUG_TYPE_OTHER_KHR => DebugMessageType.other,
-                else => DebugMessageType.other,
-            };
-        }
-
-        fn translateSeverity(sev: types.UInt) DebugSeverity {
-            return switch (sev) {
-                binding.DEBUG_SEVERITY_HIGH => DebugSeverity.high,
-                // binding.DEBUG_SEVERITY_HIGH_AMD => DebugSeverity.high,
-                // binding.DEBUG_SEVERITY_HIGH_ARB => DebugSeverity.high,
-                // binding.DEBUG_SEVERITY_HIGH_KHR => DebugSeverity.high,
-                binding.DEBUG_SEVERITY_MEDIUM => DebugSeverity.medium,
-                // binding.DEBUG_SEVERITY_MEDIUM_AMD => DebugSeverity.medium,
-                // binding.DEBUG_SEVERITY_MEDIUM_ARB => DebugSeverity.medium,
-                // binding.DEBUG_SEVERITY_MEDIUM_KHR => DebugSeverity.medium,
-                binding.DEBUG_SEVERITY_LOW => DebugSeverity.low,
-                // binding.DEBUG_SEVERITY_LOW_AMD => DebugSeverity.low,
-                // binding.DEBUG_SEVERITY_LOW_ARB => DebugSeverity.low,
-                // binding.DEBUG_SEVERITY_LOW_KHR => DebugSeverity.low,
-                binding.DEBUG_SEVERITY_NOTIFICATION => DebugSeverity.notification,
-                // binding.DEBUG_SEVERITY_NOTIFICATION_KHR => DebugSeverity.notification,
-                else => DebugSeverity.high,
-            };
-        }
-
-        fn callback(
-            c_source: types.Enum,
-            c_msg_type: types.Enum,
-            id: types.UInt,
-            c_severity: types.Enum,
-            length: types.SizeI,
-            c_message: [*c]const types.Char,
-            userParam: ?*const anyopaque,
-        ) callconv(.C) void {
-            const debug_source = translateSource(c_source);
-            const msg_type = translateMessageType(c_msg_type);
-            const severity = translateSeverity(c_severity);
-
-            const message = c_message[0..@as(usize, @intCast(length))];
-
-            if (is_void) {
-                handler(debug_source, msg_type, id, severity, message);
-            } else {
-                handler(@as(Context, @ptrFromInt(@intFromPtr(userParam))), debug_source, msg_type, id, severity, message);
-            }
-        }
-    };
-
-    if (is_void)
-        binding.debugMessageCallback(H.callback, null)
-    else
-        binding.debugMessageCallback(H.callback, @as(?*const anyopaque, @ptrCast(context)));
-    checkError();
-}
-
 pub fn clearColor(r: f32, g: f32, b: f32, a: f32) void {
     binding.clearColor(r, g, b, a);
     checkError();
@@ -346,16 +241,6 @@ pub fn disableVertexAttribArray(index: u32) void {
     checkError();
 }
 
-pub fn enableVertexArrayAttrib(vertexArray: types.VertexArray, index: u32) void {
-    binding.enableVertexArrayAttrib(@intFromEnum(vertexArray), index);
-    checkError();
-}
-
-pub fn disableVertexArrayAttrib(vertexArray: types.VertexArray, index: u32) void {
-    binding.disableVertexArrayAttrib(@intFromEnum(vertexArray), index);
-    checkError();
-}
-
 pub const Type = enum(types.Enum) {
     byte = binding.BYTE,
     short = binding.SHORT,
@@ -371,37 +256,6 @@ pub const Type = enum(types.Enum) {
     unsigned_int_2_10_10_10_rev = binding.UNSIGNED_INT_2_10_10_10_REV,
     unsigned_int_10_f_11_f_11_f_rev = binding.UNSIGNED_INT_10F_11F_11F_REV,
 };
-
-pub fn vertexAttribFormat(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, relativeoffset: usize) void {
-    binding.vertexAttribFormat(
-        attribindex,
-        @as(types.Int, @intCast(size)),
-        @intFromEnum(attribute_type),
-        b2gl(normalized),
-        ui2gl(relativeoffset),
-    );
-    checkError();
-}
-
-pub fn vertexAttribIFormat(attribindex: u32, size: u32, attribute_type: Type, relativeoffset: usize) void {
-    binding.vertexAttribIFormat(
-        attribindex,
-        @as(types.Int, @intCast(size)),
-        @intFromEnum(attribute_type),
-        ui2gl(relativeoffset),
-    );
-    checkError();
-}
-
-pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, relativeoffset: usize) void {
-    binding.vertexAttribLFormat(
-        attribindex,
-        @as(types.Int, @intCast(size)),
-        @intFromEnum(attribute_type),
-        ui2gl(relativeoffset),
-    );
-    checkError();
-}
 
 /// NOTE: if you use any integer type, it will cast to a floating point, you are probably looking for vertexAttribIPointer()
 pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, stride: usize, relativeoffset: usize) void {
@@ -470,22 +324,6 @@ pub fn vertexArrayAttribLFormat(vertexArray: types.VertexArray, attribindex: u32
         ),
         @intFromEnum(attribute_type),
         @as(types.UInt, @intCast(relativeoffset)),
-    );
-    checkError();
-}
-
-pub fn vertexAttribBinding(attribindex: u32, bindingindex: u32) void {
-    binding.vertexAttribBinding(
-        attribindex,
-        bindingindex,
-    );
-    checkError();
-}
-pub fn vertexArrayAttribBinding(vertexArray: types.VertexArray, attribindex: u32, bindingindex: u32) void {
-    binding.vertexArrayAttribBinding(
-        @intFromEnum(vertexArray),
-        attribindex,
-        bindingindex,
     );
     checkError();
 }
@@ -1227,34 +1065,6 @@ pub fn uniform4uiv(location: ?u32, items: []const [4]u32) void {
     }
 }
 
-pub fn uniform1i64(location: ?u32, v0: i64) void {
-    if (location) |loc| {
-        binding.uniform1i64ARB(@as(types.Int, @intCast(loc)), v0);
-        checkError();
-    }
-}
-
-pub fn uniform2i64(location: ?u32, v0: i64, v1: i64) void {
-    if (location) |loc| {
-        binding.uniform2i64ARB(@as(types.Int, @intCast(loc)), v0, v1);
-        checkError();
-    }
-}
-
-pub fn uniform3i64(location: ?u32, v0: i64, v1: i64, v2: i64) void {
-    if (location) |loc| {
-        binding.uniform3i64ARB(@as(types.Int, @intCast(loc)), v0, v1, v2);
-        checkError();
-    }
-}
-
-pub fn uniform4i64(location: ?u32, v0: i64, v1: i64, v2: i64, v3: i64) void {
-    if (location) |loc| {
-        binding.uniform4i64ARB(@as(types.Int, @intCast(loc)), v0, v1, v2, v3);
-        checkError();
-    }
-}
-
 pub fn uniformMatrix4fv(location: ?u32, transpose: bool, items: []const [4][4]f32) void {
     if (location) |loc| {
         binding.uniformMatrix4fv(
@@ -1402,15 +1212,6 @@ pub const ClipOrigin = enum(types.Enum) {
     lower_left = binding.LOWER_LEFT,
     upper_left = binding.UPPER_LEFT,
 };
-pub const ClipDepth = enum(types.Enum) {
-    negative_one_to_one = binding.NEGATIVE_ONE_TO_ONE,
-    zero_to_one = binding.ZERO_TO_ONE,
-};
-
-pub fn clipControl(origin: ClipOrigin, depth: ClipDepth) void {
-    binding.clipControl(@intFromEnum(origin), @intFromEnum(depth));
-    checkError();
-}
 
 pub const CullMode = enum(types.Enum) {
     front = binding.FRONT,
@@ -1589,16 +1390,6 @@ pub fn generateMipmap(target: TextureTarget) void {
     checkError();
 }
 
-pub fn generateTextureMipmap(texture: types.Texture) void {
-    binding.generateTextureMipmap(@intFromEnum(texture));
-    checkError();
-}
-
-pub fn bindTextureUnit(texture: types.Texture, unit: u32) void {
-    binding.bindTextureUnit(unit, @intFromEnum(texture));
-    checkError();
-}
-
 pub fn bindTexture(texture: types.Texture, target: TextureTarget) void {
     binding.bindTexture(@intFromEnum(target), @intFromEnum(texture));
     checkError();
@@ -1653,7 +1444,6 @@ pub fn TextureParameterType(comptime param: TextureParameter) type {
             clamp_to_border = binding.CLAMP_TO_BORDER,
             mirrored_repeat = binding.MIRRORED_REPEAT,
             repeat = binding.REPEAT,
-            mirror_clamp_to_edge = binding.MIRROR_CLAMP_TO_EDGE,
         },
         .swizzle_r, .swizzle_g, .swizzle_b, .swizzle_a => enum(types.Int) {
             red = binding.RED,
@@ -1689,18 +1479,6 @@ pub fn texParameter(target: TextureTarget, comptime parameter: TextureParameter,
         binding.texParameteri(@intFromEnum(target), @intFromEnum(parameter), @intFromEnum(value));
     } else {
         @compileError(@tagName(info) ++ " is not supported yet by texParameter");
-    }
-    checkError();
-}
-
-pub fn textureParameter(texture: types.Texture, comptime parameter: TextureParameter, value: TextureParameterType(parameter)) void {
-    const T = TextureParameterType(parameter);
-    const info = @typeInfo(T);
-
-    if (info == .Enum) {
-        binding.textureParameteri(@intFromEnum(texture), @intFromEnum(parameter), @intFromEnum(value));
-    } else {
-        @compileError(@tagName(info) ++ " is not supported yet by textureParameter");
     }
     checkError();
 }
@@ -1786,64 +1564,6 @@ pub const TextureInternalFormat = enum(types.Enum) {
     rgba32ui = binding.RGBA32UI,
     depth_component16 = binding.DEPTH_COMPONENT16,
 };
-
-pub fn texStorage2D(
-    target: TextureTarget,
-    levels: usize,
-    internalformat: TextureInternalFormat,
-    width: usize,
-    height: usize,
-) void {
-    binding.texStorage2D(
-        @intFromEnum(target),
-        @as(types.SizeI, @intCast(levels)),
-        @intFromEnum(internalformat),
-        @as(types.SizeI, @intCast(width)),
-        @as(types.SizeI, @intCast(height)),
-    );
-    checkError();
-}
-
-pub fn textureStorage2D(
-    texture: types.Texture,
-    levels: usize,
-    internalformat: TextureInternalFormat,
-    width: usize,
-    height: usize,
-) void {
-    binding.textureStorage2D(
-        @intFromEnum(texture),
-        @as(types.SizeI, @intCast(levels)),
-        @intFromEnum(internalformat),
-        @as(types.SizeI, @intCast(width)),
-        @as(types.SizeI, @intCast(height)),
-    );
-    checkError();
-}
-
-pub fn texStorage3D(target: TextureTarget, levels: usize, internalformat: TextureInternalFormat, width: usize, height: usize, depth: usize) void {
-    binding.texStorage3D(@intFromEnum(target), @as(types.SizeI, @intCast(levels)), @intFromEnum(internalformat), @as(types.SizeI, @intCast(width)), @as(types.SizeI, @intCast(height)), @as(types.SizeI, @intCast(depth)));
-    checkError();
-}
-
-pub fn textureStorage3D(
-    texture: types.Texture,
-    levels: usize,
-    internalformat: TextureInternalFormat,
-    width: usize,
-    height: usize,
-    depth: usize,
-) void {
-    binding.textureStorage3D(
-        @intFromEnum(texture),
-        @as(types.SizeI, @intCast(levels)),
-        @intFromEnum(internalformat),
-        @as(types.SizeI, @intCast(width)),
-        @as(types.SizeI, @intCast(height)),
-        @as(types.SizeI, @intCast(depth)),
-    );
-    checkError();
-}
 
 pub const PixelFormat = enum(types.Enum) {
     red = binding.RED,
@@ -2064,37 +1784,6 @@ pub fn getTexImage(
     checkError();
 }
 
-pub fn getTextureSubImage(
-    texture: types.Texture,
-    level: usize,
-    xoffset: usize,
-    yoffset: usize,
-    zoffset: usize,
-    width: usize,
-    height: usize,
-    depth: usize,
-    pixel_format: PixelFormat,
-    pixel_type: PixelType,
-    size: usize,
-    data: [*]u8,
-) void {
-    binding.getTextureSubImage(
-        @intFromEnum(texture),
-        @as(types.Int, @intCast(level)),
-        @as(types.Int, @intCast(xoffset)),
-        @as(types.Int, @intCast(yoffset)),
-        @as(types.Int, @intCast(zoffset)),
-        @as(types.SizeI, @intCast(width)),
-        @as(types.SizeI, @intCast(height)),
-        @as(types.SizeI, @intCast(depth)),
-        @intFromEnum(pixel_format),
-        @intFromEnum(pixel_type),
-        @as(types.SizeI, @intCast(size)),
-        data,
-    );
-    checkError();
-}
-
 pub fn copyTexSubImage2D(
     target: TextureTarget,
     level: usize,
@@ -2114,27 +1803,6 @@ pub fn copyTexSubImage2D(
         @as(types.Int, @intCast(y)),
         @as(types.SizeI, @intCast(width)),
         @as(types.SizeI, @intCast(height)),
-    );
-    checkError();
-}
-
-pub fn bindImageTexture(
-    unit: u32,
-    texture: types.Texture,
-    level: usize,
-    layerd: bool,
-    layer: usize,
-    access: BufferMapAccess,
-    format: TextureInternalFormat,
-) void {
-    binding.bindImageTexture(
-        @as(types.UInt, @intCast(unit)),
-        @intFromEnum(texture),
-        @as(types.Int, @intCast(level)),
-        b2gl(layerd),
-        @as(types.Int, @intCast(layer)),
-        @intFromEnum(access),
-        @intFromEnum(format),
     );
     checkError();
 }
@@ -2177,18 +1845,6 @@ pub fn scissor(x: i32, y: i32, width: usize, height: usize) void {
 pub const RenderbufferTarget = enum(types.Enum) {
     buffer = binding.RENDERBUFFER,
 };
-
-pub fn createRenderbuffer() types.Renderbuffer {
-    var rb_name: types.UInt = undefined;
-    binding.createRenderbuffers(1, &rb_name);
-    checkError();
-    const framebuffer = @as(types.Renderbuffer, @enumFromInt(rb_name));
-    if (framebuffer == .invalid) {
-        checkError();
-        unreachable;
-    }
-    return framebuffer;
-}
 
 pub fn genRenderbuffer() types.Renderbuffer {
     var rb_name: types.UInt = undefined;
@@ -2370,29 +2026,6 @@ pub fn blitFramebuffer(
 
 ///////////////////////////////////////////////////////////////////////////////
 // Invalidation
-pub fn invalidateTexImage(texture: types.Texture, level: types.Int) void {
-    binding.invalidateTexImage(@intFromEnum(texture), level);
-    checkError();
-}
-
-pub fn invalidateBufferSubData(buffer: types.Buffer, comptime T: type, offset: usize, count: usize) void {
-    binding.invalidateBufferSubData(
-        @intFromEnum(buffer),
-        @as(binding.GLintptr, @intCast(offset)),
-        cs2gl(@sizeOf(T) * count),
-    );
-    checkError();
-}
-
-pub fn invalidateBufferData(buffer: types.Buffer) void {
-    binding.invalidateBufferData(@intFromEnum(buffer));
-    checkError();
-}
-
-pub fn invalidateFramebuffer(target: FramebufferTarget, attachments: []const FramebufferAttachment) void {
-    binding.invalidateFramebuffer(@intFromEnum(target), cs2gl(attachments.len), @as([*]const types.Enum, @ptrCast(attachments.ptr)));
-    checkError();
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Syncing
